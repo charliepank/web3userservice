@@ -3,7 +3,7 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 COPY build/libs/*.jar app.jar
-COPY .env .env
+#COPY .env .env
 
 EXPOSE 8977
 
