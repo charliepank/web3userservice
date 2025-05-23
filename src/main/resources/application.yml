@@ -1,0 +1,40 @@
+# src/main/resources/application.yml
+spring:
+  data:
+    mongodb:
+      uri: ${NEXT_MONGO_DB_URL}
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+server:
+  port: 8977  # Different port from contract service
+  # Add debug port configuration
+  debug:
+    port: ${DEBUG_PORT:5005}  # Default to 5005 if not set
+    enabled: ${DEBUG_ENABLED:false}  # Default to false if not set
+
+cookie:
+  domain: ${COOKIE_DOMAIN}
+jwt:
+  secret: ${JWT_COOKIE_SECRET}
+
+# Uncomment and control via DEBUG_LOGGING environment variable
+logging:
+  level:
+    root: ${LOG_LEVEL:INFO}
+    org.springframework.data.mongodb.core.MongoTemplate: ${DEBUG_LOGGING:INFO}
+    org.springframework.data.mongodb.repository.Query: ${DEBUG_LOGGING:INFO}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  show-actuator: false

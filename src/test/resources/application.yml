@@ -1,0 +1,20 @@
+# src/test/resources/application.yml
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/userservice-test
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+server:
+  port: 8977
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    org.springframework.data.mongodb.repository.Query: DEBUG
+    com.utility.web3userservice: DEBUG
