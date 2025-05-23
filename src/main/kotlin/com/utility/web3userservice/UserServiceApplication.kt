@@ -1,19 +1,21 @@
 package com.utility.web3userservice
 
+import io.github.cdimascio.dotenv.dotenv
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import io.github.cdimascio.dotenv.dotenv
 
 @SpringBootApplication
 class UserServiceApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            // Load environment variables before Spring Boot starts
+            // Load .env file if it exists, otherwise continue without it
             dotenv {
-                systemProperties = true
+                ignoreIfMissing = true
+                directory = "./"  // Look in the current directory
             }
-            runApplication<com.utility.web3userservice.UserServiceApplication>(*args)
+            
+            runApplication<UserServiceApplication>(*args)
         }
     }
 }
